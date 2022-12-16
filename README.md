@@ -60,10 +60,68 @@ bin/pulsar-admin sinks status --tenant public --namespace default --name iceberg
 
 ````
 
+### Setup
+
+* Download Spark 3.2_2.12
+* Download iceberg-spark-runtime-3.2_2.12:1.1.0
+
+### Run Spark Shell
+
+````
+spark-sql --packages org.apache.iceberg:iceberg-spark-runtime-3.2_2.12:1.1.0\
+    --conf spark.sql.extensions=org.apache.iceberg.spark.extensions.IcebergSparkSessionExtensions \
+    --conf spark.sql.catalog.spark_catalog=org.apache.iceberg.spark.SparkSessionCatalog \
+    --conf spark.sql.catalog.spark_catalog.type=hive \
+    --conf spark.sql.catalog.local=org.apache.iceberg.spark.SparkCatalog \
+    --conf spark.sql.catalog.local.type=hadoop \
+    --conf spark.sql.catalog.local.warehouse=/Users/tspann/Downloads/iceberg/iceberg_sink_test
+````
+
 ### Spark Shell
 
 ````
+desc local.ice_sink_thermal;
+uuid                	string
+ipaddress           	string
+cputempf            	int
+runtime             	int
+host                	string
+hostname            	string
+macaddress          	string
+endtime             	string
+te                  	string
+cpu                 	float
+diskusage           	string
+memory              	float
+rowid               	string
+systemtime          	string
+ts                  	int
+starttime           	string
+datetimestamp       	string
+temperature         	float
+humidity            	float
+co2                 	float
+totalvocppb         	float
+equivalentco2ppm    	float
+pressure            	float
+temperatureicp      	float
 
+# Partitioning
+Not partitioned
+
+select * from local.ice_sink_thermal limit 10;
+
+thrml_zlq_20221216202731	192.168.1.179	122	0	thermal	thermal	e4:5f:01:7c:3f:34	1671222451.063736	0.0005979537963867188	11.1	101858.0 MB	10.0	20221216202731_e414e311-7928-4408-91de-b44666cd14db	12/16/2022 15:27:35	1671222455	12/16/2022 15:27:31	2022-12-16 20:27:34.827283+00:00	26.8868	31.76	771.0	14.0	405.0	99783.77	86.0
+thrml_fpa_20221216202735	192.168.1.179	122	0	thermal	thermal	e4:5f:01:7c:3f:34	1671222455.8950574	0.00046181678771972656	5.5	101858.0 MB	10.0	20221216202735_92a2af14-ebcb-42fd-a935-5a01a47ff95e	12/16/2022 15:27:40	1671222460	12/16/2022 15:27:35	2022-12-16 20:27:39.659337+00:00	26.8761	31.74	771.0	6.0	400.0	99784.8	86.0
+thrml_gpv_20221216202740	192.168.1.179	122	0	thermal	thermal	e4:5f:01:7c:3f:34	1671222460.7061012	0.0006053447723388672	5.5	101858.0 MB	10.0	20221216202740_68f88218-1b40-4f0a-85e3-3fb8f447d65b	12/16/2022 15:27:45	1671222465	12/16/2022 15:27:40	2022-12-16 20:27:44.369295+00:00	26.8761	31.72	770.0	7.0	65535.0	99782.18	85.0
+thrml_gxu_20221216202745	192.168.1.179	121	0	thermal	thermal	e4:5f:01:7c:3f:34	1671222465.500708	0.0006241798400878906	6.0	101858.0 MB	10.0	20221216202745_28685c57-88f5-422b-be23-b32ea12a0d75	12/16/2022 15:27:50	1671222470	12/16/2022 15:27:45	2022-12-16 20:27:49.161722+00:00	26.8681	31.83	771.0	12.0	65535.0	99778.97	85.0
+thrml_nyn_20221216202750	192.168.1.179	122	0	thermal	thermal	e4:5f:01:7c:3f:34	1671222470.212329	0.0006175041198730469	5.5	101858.0 MB	10.0	20221216202750_bbbb7fa7-cebf-4414-b538-30ce84828cea	12/16/2022 15:27:55	1671222475	12/16/2022 15:27:50	2022-12-16 20:27:53.976872+00:00	26.8601	31.78	771.0	6.0	65535.0	99783.55	86.0
+thrml_oxl_20221216202755	192.168.1.179	123	0	thermal	thermal	e4:5f:01:7c:3f:34	1671222475.1313043	0.0006723403930664062	6.6	101858.0 MB	10.0	20221216202755_bda36e1c-246f-4d99-8b39-b558111a1d9e	12/16/2022 15:27:59	1671222479	12/16/2022 15:27:55	2022-12-16 20:27:58.794626+00:00	26.8307	31.73	771.0	7.0	65535.0	99785.26	86.0
+thrml_rvg_20221216202759	192.168.1.179	121	0	thermal	thermal	e4:5f:01:7c:3f:34	1671222479.8391178	0.00048804283142089844	5.5	101858.0 MB	10.4	20221216202759_25b8ee3b-6b59-42e6-8c4c-a8419b76ea40	12/16/2022 15:28:04	1671222484	12/16/2022 15:27:59	2022-12-16 20:28:03.601685+00:00	26.8441	31.76	771.0	6.0	406.0	99786.36	86.0
+thrml_wbl_20221216202804	192.168.1.179	123	0	thermal	thermal	e4:5f:01:7c:3f:34	1671222484.6672618	0.0006029605865478516	5.5	101858.0 MB	10.0	20221216202804_7bd3de16-dbcd-4107-8ab0-b184a2eaf523	12/16/2022 15:28:09	1671222489	12/16/2022 15:28:04	2022-12-16 20:28:08.431971+00:00	26.8842	31.79	770.0	9.0	65535.0	99787.27	86.0
+thrml_vwj_20221216202809	192.168.1.179	122	0	thermal	thermal	e4:5f:01:7c:3f:34	1671222489.4752936	0.0006010532379150391	9.9	101858.0 MB	10.0	20221216202809_fed14b6d-b211-48ad-b31f-0a486b8d0f0d	12/16/2022 15:28:14	1671222494	12/16/2022 15:28:09	2022-12-16 20:28:13.137929+00:00	26.9002	31.78	770.0	5.0	400.0	99782.4	86.0
+thrml_oox_20221216202814	192.168.1.179	123	0	thermal	thermal	e4:5f:01:7c:3f:34	1671222494.2805836	0.0005502700805664062	4.8	101858.0 MB	10.0	20221216202814_89526e7c-980b-4dbe-8257-c1c6944cdbd3	12/16/2022 15:28:18	1671222498	12/16/2022 15:28:14	2022-12-16 20:28:17.943010+00:00	26.9162	31.72	769.0	1.0	65535.0	99789.35	86.0
+Time taken: 0.835 seconds, Fetched 10 row(s)
 
 ````
 
