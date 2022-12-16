@@ -6,12 +6,12 @@ Apache Iceberg + Apache Pulsar + Thermal Sensor Data from a Raspberry Pi
 
 ### Steps
 
-* Run Apache Pulsar (standalone, docker, baremetal cluster, VM cluster, K8 cluster, AWS Marketplace Pulsar, StreamNative Cloud)
-* Run Iceberg (docker, ...)
+* Run Apache Pulsar 2.10.2 (standalone, docker, baremetal cluster, VM cluster, K8 cluster, AWS Marketplace Pulsar, StreamNative Cloud)
+* Run Apache Iceberg (docker, ...) 1.1.0
+* Run Apache Spark 3.2
 * Deploy Pulsar connector
 * Send data to Pulsar topic
-* Query Iceberg
-
+* Query Iceberg in Spark
 
 ### Sensor Python App Sending messages
 
@@ -60,6 +60,48 @@ bin/pulsar-admin sinks status --tenant public --namespace default --name iceberg
 
 ````
 
+### Iceberg data written via Pulsar Lakehouse Cloud Sink
+
+````
+ls -lt /Users/tspann/Downloads/iceberg/iceberg_sink_test/ice_sink_thermal
+total 0
+drwxr-xr-x  94 tspann  staff  3008 Dec 16 15:45 metadata
+drwxr-xr-x  34 tspann  staff  1088 Dec 16 15:45 data
+
+ice_sink_thermal/metadata
+total 856
+-rw-r--r--  1 tspann  staff      2 Dec 16 15:45 version-hint.text
+-rw-r--r--  1 tspann  staff  19283 Dec 16 15:45 v15.metadata.json
+-rw-r--r--  1 tspann  staff   4352 Dec 16 15:45 snap-8802315029762513718-1-78627844-0d69-4c2e-87db-016b9fdac119.avro
+-rw-r--r--  1 tspann  staff   7536 Dec 16 15:45 78627844-0d69-4c2e-87db-016b9fdac119-m0.avro
+-rw-r--r--  1 tspann  staff  18303 Dec 16 15:43 v14.metadata.json
+-rw-r--r--  1 tspann  staff   4315 Dec 16 15:43 snap-1218246990201737819-1-1253a40d-fae5-4919-9d71-be51af402899.avro
+
+iceberg_sink_test/ice_sink_thermal/data
+total 360
+-rw-r--r--  1 tspann  staff  9771 Dec 16 15:45 00000-1-951a37fc-5069-4201-94fa-4ef9975f6293-00014.parquet
+-rw-r--r--  1 tspann  staff  9782 Dec 16 15:43 00000-1-951a37fc-5069-4201-94fa-4ef9975f6293-00013.parquet
+-rw-r--r--  1 tspann  staff  9733 Dec 16 15:41 00000-1-951a37fc-5069-4201-94fa-4ef9975f6293-00012.parquet
+-rw-r--r--  1 tspann  staff  9637 Dec 16 15:39 00000-1-951a37fc-5069-4201-94fa-4ef9975f6293-00011.parquet
+-rw-r--r--  1 tspann  staff  9722 Dec 16 15:37 00000-1-951a37fc-5069-4201-94fa-4ef9975f6293-00010.parquet
+-rw-r--r--  1 tspann  staff  9663 Dec 16 15:35 00000-1-951a37fc-5069-4201-94fa-4ef9975f6293-00009.parquet
+-rw-r--r--  1 tspann  staff  9671 Dec 16 15:33 00000-1-951a37fc-5069-4201-94fa-4ef9975f6293-00008.parquet
+-rw-r--r--  1 tspann  staff  9652 Dec 16 15:31 00000-1-951a37fc-5069-4201-94fa-4ef9975f6293-00007.parquet
+-rw-r--r--  1 tspann  staff  9716 Dec 16 15:29 00000-1-951a37fc-5069-4201-94fa-4ef9975f6293-00006.parquet
+-rw-r--r--  1 tspann  staff  9731 Dec 16 15:27 00000-1-951a37fc-5069-4201-94fa-4ef9975f6293-00005.parquet
+-rw-r--r--  1 tspann  staff  9639 Dec 16 15:25 00000-1-951a37fc-5069-4201-94fa-4ef9975f6293-00004.parquet
+-rw-r--r--  1 tspann  staff  9721 Dec 16 15:23 00000-1-951a37fc-5069-4201-94fa-4ef9975f6293-00003.parquet
+-rw-r--r--  1 tspann  staff  7414 Dec 16 15:21 00000-1-951a37fc-5069-4201-94fa-4ef9975f6293-00002.parquet
+-rw-r--r--  1 tspann  staff  8492 Dec 16 14:59 00000-1-951a37fc-5069-4201-94fa-4ef9975f6293-00001.parquet
+-rw-r--r--  1 tspann  staff  7978 Dec 16 14:56 00000-1-2acfc6ba-4f49-44c7-8f17-1f3491484fd1-00001.parquet
+-rw-r--r--  1 tspann  staff  7886 Dec 16 14:54 00000-1-7e714ed7-0ba5-41a4-b8e1-1e1d261e3b83-00001.parquet
+
+Schema Embedded in Parquet File
+
+ {"type":"struct","schema-id":0,"fields":[{"id":1,"name":"uuid","required":true,"type":"string"},{"id":2,"name":"ipaddress","required":true,"type":"string"},{"id":3,"name":"cputempf","required":true,"type":"int"},{"id":4,"name":"runtime","required":true,"type":"int"},{"id":5,"name":"host","required":true,"type":"string"},{"id":6,"name":"hostname","required":true,"type":"string"},{"id":7,"name":"macaddress","required":true,"type":"string"},{"id":8,"name":"endtime","required":true,"type":"string"},{"id":9,"name":"te","required":true,"type":"string"},{"id":10,"name":"cpu","required":true,"type":"float"},{"id":11,"name":"diskusage","required":true,"type":"string"},{"id":12,"name":"memory","required":true,"type":"float"},{"id":13,"name":"rowid","required":true,"type":"string"},{"id":14,"name":"systemtime","required":true,"type":"string"},{"id":15,"name":"ts","required":true,"type":"int"},{"id":16,"name":"starttime","required":true,"type":"string"},{"id":17,"name":"datetimestamp","required":true,"type":"string"},{"id":18,"name":"temperature","required":true,"type":"float"},{"id":19,"name":"humidity","required":true,"type":"float"},{"id":20,"name":"co2","required":true,"type":"float"},{"id":21,"name":"totalvocppb","required":true,"type":"float"},{"id":22,"name":"equivalentco2ppm","required":true,"type":"float"},{"id":23,"name":"pressure","required":true,"type":"float"},{"id":24,"name":"temperatureicp","required":true,"type":"float"}]}Jparquet-mr version 1.12.0 (build db75a6815f2ba1d1ee89d1a90aeb296f1f3a8f20)
+ 
+````
+
 ### Setup
 
 * Download Spark 3.2_2.12
@@ -68,7 +110,7 @@ bin/pulsar-admin sinks status --tenant public --namespace default --name iceberg
 ### Run Spark Shell
 
 ````
-spark-sql --packages org.apache.iceberg:iceberg-spark-runtime-3.2_2.12:1.1.0\
+bin/spark-sql --packages org.apache.iceberg:iceberg-spark-runtime-3.2_2.12:1.1.0\
     --conf spark.sql.extensions=org.apache.iceberg.spark.extensions.IcebergSparkSessionExtensions \
     --conf spark.sql.catalog.spark_catalog=org.apache.iceberg.spark.SparkSessionCatalog \
     --conf spark.sql.catalog.spark_catalog.type=hive \
