@@ -102,6 +102,289 @@ Schema Embedded in Parquet File
  
 ````
 
+### Validate our Parquet Files
+
+````
+pip3.9 install parquet-tools -U
+ 
+parquet-tools inspect ice_sink_thermal/data/00000-1-7e714ed7-0ba5-41a4-b8e1-1e1d261e3b83-00001.parquet
+
+############ file meta data ############
+created_by: parquet-mr version 1.12.0 (build db75a6815f2ba1d1ee89d1a90aeb296f1f3a8f20)
+num_columns: 24
+num_rows: 4
+num_row_groups: 1
+format_version: 1.0
+serialized_size: 4577
+
+
+############ Columns ############
+uuid
+ipaddress
+cputempf
+runtime
+host
+hostname
+macaddress
+endtime
+te
+cpu
+diskusage
+memory
+rowid
+systemtime
+ts
+starttime
+datetimestamp
+temperature
+humidity
+co2
+totalvocppb
+equivalentco2ppm
+pressure
+temperatureicp
+
+############ Column(uuid) ############
+name: uuid
+path: uuid
+max_definition_level: 0
+max_repetition_level: 0
+physical_type: BYTE_ARRAY
+logical_type: String
+converted_type (legacy): UTF8
+compression: GZIP (space_saved: 28%)
+
+############ Column(ipaddress) ############
+name: ipaddress
+path: ipaddress
+max_definition_level: 0
+max_repetition_level: 0
+physical_type: BYTE_ARRAY
+logical_type: String
+converted_type (legacy): UTF8
+compression: GZIP (space_saved: -67%)
+
+############ Column(cputempf) ############
+name: cputempf
+path: cputempf
+max_definition_level: 0
+max_repetition_level: 0
+physical_type: INT32
+logical_type: None
+converted_type (legacy): NONE
+compression: GZIP (space_saved: -38%)
+
+############ Column(runtime) ############
+name: runtime
+path: runtime
+max_definition_level: 0
+max_repetition_level: 0
+physical_type: INT32
+logical_type: None
+converted_type (legacy): NONE
+compression: GZIP (space_saved: -85%)
+
+############ Column(host) ############
+name: host
+path: host
+max_definition_level: 0
+max_repetition_level: 0
+physical_type: BYTE_ARRAY
+logical_type: String
+converted_type (legacy): UTF8
+compression: GZIP (space_saved: -74%)
+
+############ Column(hostname) ############
+name: hostname
+path: hostname
+max_definition_level: 0
+max_repetition_level: 0
+physical_type: BYTE_ARRAY
+logical_type: String
+converted_type (legacy): UTF8
+compression: GZIP (space_saved: -74%)
+
+############ Column(macaddress) ############
+name: macaddress
+path: macaddress
+max_definition_level: 0
+max_repetition_level: 0
+physical_type: BYTE_ARRAY
+logical_type: String
+converted_type (legacy): UTF8
+compression: GZIP (space_saved: -62%)
+
+############ Column(endtime) ############
+name: endtime
+path: endtime
+max_definition_level: 0
+max_repetition_level: 0
+physical_type: BYTE_ARRAY
+logical_type: String
+converted_type (legacy): UTF8
+compression: GZIP (space_saved: 17%)
+
+############ Column(te) ############
+name: te
+path: te
+max_definition_level: 0
+max_repetition_level: 0
+physical_type: BYTE_ARRAY
+logical_type: String
+converted_type (legacy): UTF8
+compression: GZIP (space_saved: 16%)
+
+############ Column(cpu) ############
+name: cpu
+path: cpu
+max_definition_level: 0
+max_repetition_level: 0
+physical_type: FLOAT
+logical_type: None
+converted_type (legacy): NONE
+compression: GZIP (space_saved: -75%)
+
+############ Column(diskusage) ############
+name: diskusage
+path: diskusage
+max_definition_level: 0
+max_repetition_level: 0
+physical_type: BYTE_ARRAY
+logical_type: String
+converted_type (legacy): UTF8
+compression: GZIP (space_saved: -69%)
+
+############ Column(memory) ############
+name: memory
+path: memory
+max_definition_level: 0
+max_repetition_level: 0
+physical_type: FLOAT
+logical_type: None
+converted_type (legacy): NONE
+compression: GZIP (space_saved: -85%)
+
+############ Column(rowid) ############
+name: rowid
+path: rowid
+max_definition_level: 0
+max_repetition_level: 0
+physical_type: BYTE_ARRAY
+logical_type: String
+converted_type (legacy): UTF8
+compression: GZIP (space_saved: 33%)
+
+############ Column(systemtime) ############
+name: systemtime
+path: systemtime
+max_definition_level: 0
+max_repetition_level: 0
+physical_type: BYTE_ARRAY
+logical_type: String
+converted_type (legacy): UTF8
+compression: GZIP (space_saved: 33%)
+
+############ Column(ts) ############
+name: ts
+path: ts
+max_definition_level: 0
+max_repetition_level: 0
+physical_type: INT32
+logical_type: None
+converted_type (legacy): NONE
+compression: GZIP (space_saved: -41%)
+
+############ Column(starttime) ############
+name: starttime
+path: starttime
+max_definition_level: 0
+max_repetition_level: 0
+physical_type: BYTE_ARRAY
+logical_type: String
+converted_type (legacy): UTF8
+compression: GZIP (space_saved: 33%)
+
+############ Column(datetimestamp) ############
+name: datetimestamp
+path: datetimestamp
+max_definition_level: 0
+max_repetition_level: 0
+physical_type: BYTE_ARRAY
+logical_type: String
+converted_type (legacy): UTF8
+compression: GZIP (space_saved: 37%)
+
+############ Column(temperature) ############
+name: temperature
+path: temperature
+max_definition_level: 0
+max_repetition_level: 0
+physical_type: FLOAT
+logical_type: None
+converted_type (legacy): NONE
+compression: GZIP (space_saved: -51%)
+
+############ Column(humidity) ############
+name: humidity
+path: humidity
+max_definition_level: 0
+max_repetition_level: 0
+physical_type: FLOAT
+logical_type: None
+converted_type (legacy): NONE
+compression: GZIP (space_saved: -49%)
+
+############ Column(co2) ############
+name: co2
+path: co2
+max_definition_level: 0
+max_repetition_level: 0
+physical_type: FLOAT
+logical_type: None
+converted_type (legacy): NONE
+compression: GZIP (space_saved: -51%)
+
+############ Column(totalvocppb) ############
+name: totalvocppb
+path: totalvocppb
+max_definition_level: 0
+max_repetition_level: 0
+physical_type: FLOAT
+logical_type: None
+converted_type (legacy): NONE
+compression: GZIP (space_saved: -85%)
+
+############ Column(equivalentco2ppm) ############
+name: equivalentco2ppm
+path: equivalentco2ppm
+max_definition_level: 0
+max_repetition_level: 0
+physical_type: FLOAT
+logical_type: None
+converted_type (legacy): NONE
+compression: GZIP (space_saved: -75%)
+
+############ Column(pressure) ############
+name: pressure
+path: pressure
+max_definition_level: 0
+max_repetition_level: 0
+physical_type: FLOAT
+logical_type: None
+converted_type (legacy): NONE
+compression: GZIP (space_saved: -49%)
+
+############ Column(temperatureicp) ############
+name: temperatureicp
+path: temperatureicp
+max_definition_level: 0
+max_repetition_level: 0
+physical_type: FLOAT
+logical_type: None
+converted_type (legacy): NONE
+compression: GZIP (space_saved: -85%)
+````
+
 ### Setup
 
 * Download Spark 3.2_2.12
