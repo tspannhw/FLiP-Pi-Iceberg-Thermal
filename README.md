@@ -24,6 +24,7 @@ Apache Iceberg + Apache Pulsar + Thermal Sensor Data from a Raspberry Pi
 * https://github.com/tspannhw/FLiP-Pi-Thermal
 * https://dzone.com/articles/pulsar-in-python-on-pi
 * https://github.com/tabular-io/docker-spark-iceberg
+* https://iceberg.apache.org/docs/latest/getting-started/
 
 
 2022/2023 - Tim Spann - @PaaSDev
