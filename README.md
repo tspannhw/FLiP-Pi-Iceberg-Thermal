@@ -25,6 +25,7 @@ Apache Iceberg + Apache Pulsar + Thermal Sensor Data from a Raspberry Pi
 * https://dzone.com/articles/pulsar-in-python-on-pi
 * https://github.com/tabular-io/docker-spark-iceberg
 * https://iceberg.apache.org/docs/latest/getting-started/
+* https://stackoverflow.com/questions/73791829/delta-lake-sink-connector-for-apache-pulsar-with-minio-throws-java-lang-illegal
 
 
 2022/2023 - Tim Spann - @PaaSDev
