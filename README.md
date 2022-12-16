@@ -478,6 +478,6 @@ Time taken: 0.898 seconds, Fetched 10 row(s)
 * https://github.com/tabular-io/docker-spark-iceberg
 * https://iceberg.apache.org/docs/latest/getting-started/
 * https://stackoverflow.com/questions/73791829/delta-lake-sink-connector-for-apache-pulsar-with-minio-throws-java-lang-illegal
-
+* https://thenewstack.io/apache-iceberg-a-different-table-design-for-big-data/
 
 2022/2023 - Tim Spann - @PaaSDev
