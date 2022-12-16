@@ -12,8 +12,44 @@ Apache Iceberg + Apache Pulsar + Thermal Sensor Data from a Raspberry Pi
 * Send data to Pulsar topic
 * Query Iceberg
 
+### Pulsar Sink Deploy
 
+````
+bin/pulsar-admin sink stop --name iceberg_sink --namespace default --tenant public
 
+bin/pulsar-admin sinks delete --tenant public --namespace default --name iceberg_sink
+
+bin/pulsar-admin sink create --sink-config-file conf/iceberg.json
+
+````
+
+### Pulsar Sink Status
+
+````
+bin/pulsar-admin sinks status --tenant public --namespace default --name iceberg_sink
+
+{
+  "numInstances" : 1,
+  "numRunning" : 1,
+  "instances" : [ {
+    "instanceId" : 0,
+    "status" : {
+      "running" : true,
+      "error" : "",
+      "numRestarts" : 0,
+      "numReadFromPulsar" : 10,
+      "numSystemExceptions" : 0,
+      "latestSystemExceptions" : [ ],
+      "numSinkExceptions" : 0,
+      "latestSinkExceptions" : [ ],
+      "numWrittenToSink" : 10,
+      "lastReceivedTime" : 1671220772536,
+      "workerId" : "c-standalone-fw-127.0.0.1-8080"
+    }
+  } ]
+}
+
+````
 
 ### References
 
