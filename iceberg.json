@@ -1,0 +1,25 @@
+{
+    "tenant":"public",
+    "namespace":"default",
+    "name":"iceberg_sink",
+    "parallelism":1,
+    "sourceSubscriptionName": "ice_sink_v1",
+    "inputs": [
+      "persistent://public/default/thermalsensors-partition-0"
+    ],
+    "archive": "./connectors/pulsar-io-lakehouse-2.10.1.12-cloud.nar",
+    "processingGuarantees":"EFFECTIVELY_ONCE",
+    "configs":{
+        "type":"iceberg",
+        "maxCommitInterval":120,
+        "maxRecordsPerCommit":10000000,
+        "catalogName":"warehouse",
+        "tableNamespace":"iceberg_sink_test",
+        "tableName":"ice_sink_thermal",
+        "hadoop.fs.s3a.aws.credentials.provider": "com.amazonaws.auth.DefaultAWSCredentialsProviderChain",
+        "catalogProperties":{
+            "warehouse":"file:///Users/tspann/Downloads/iceberg",
+            "catalog-impl":"hadoopCatalog"
+        }
+    }
+}
