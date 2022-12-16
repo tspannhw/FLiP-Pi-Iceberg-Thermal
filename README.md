@@ -9,3 +9,8 @@ Apache Iceberg + Apache Pulsar + Thermal Sensor Data from a Raspberry Pi
 * https://github.com/streamnative/pulsar-io-lakehouse/blob/master/docs/lakehouse-sink.md
 * https://streamnative.io/blog/release/2022-12-14-announcing-the-iceberg-sink-connector-for-apache-pulsar/
 * https://hub.streamnative.io/connectors/lakehouse-sink/v2.10.1.12/
+* https://github.com/tspannhw/FLiP-Pi-Thermal
+* https://dzone.com/articles/pulsar-in-python-on-pi
+
+
+2022/2023 - Tim Spann - @PaaSDev
