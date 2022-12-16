@@ -60,9 +60,17 @@ bin/pulsar-admin sinks status --tenant public --namespace default --name iceberg
 
 ````
 
+### Spark Shell
+
+````
+
+
+````
+
 ### References
 
 * https://github.com/tspannhw/FLiP-Pi-DeltaLake-Thermal
+* https://iceberg.apache.org/docs/latest/getting-started/
 * https://github.com/streamnative/pulsar-io-lakehouse/blob/master/docs/lakehouse-sink.md
 * https://streamnative.io/blog/release/2022-12-14-announcing-the-iceberg-sink-connector-for-apache-pulsar/
 * https://hub.streamnative.io/connectors/lakehouse-sink/v2.10.1.12/
